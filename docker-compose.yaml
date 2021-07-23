@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  api-service:
+    build: ./
+    command: yarn dev
+    networks: 
+      - backend
+    ports:
+      - "8000:8000"
+    expose: 
+      - 8000
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_SCHEMA=cinema-db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+  db:
+    hostname: db
+    image: postgres
+    networks: 
+      - backend
+    expose: 
+      - 5432
+    ports: 
+      - "5432:5432"
+    restart: always
+    environment: 
+      - DB_PASSWORD=postgres
+    volumes: 
+      - cinema-db:/var/lib/docker/volumes/postgresql/_data
+
+networks:
+  backend:
+    name: main
+    driver: bridge
+
+volumes: 
+  cinema-db:
+    driver: local

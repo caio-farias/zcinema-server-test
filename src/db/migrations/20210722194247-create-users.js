@@ -39,6 +39,14 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        avatar:{
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        avatar:{
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
         email: {
           type: Sequelize.STRING,
           allowNull: false,

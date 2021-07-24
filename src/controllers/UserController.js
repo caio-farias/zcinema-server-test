@@ -3,15 +3,23 @@ const User = require("../models/User")
 module.exports = {
   async createUser(req, res) {
     const { first_name, last_name, password, email } = req.body
+    const avatar = 'http://localhost:8000/uploads/user_avatars/' + req.file.filename
     try {
-      const isSameUser = !!await User.findOne({ where: { email : email } })
+      const isSameUser = await User.findOne({ where: { email : email } })
       if(isSameUser){
         return res.status(400).json({ message: "Usuário já existe."})
       }
-      const user = await User.create({ first_name, last_name, password, email})
+      const user = await User.create({ 
+        first_name, 
+        last_name, 
+        password, 
+        email, 
+        avatar
+      })
       delete user['dataValues'].password
       return res.json(user)
     } catch (error) {
+      console.log(error)
       return res.status(400).json({ message: "Ocorreu um erro, tente novamente." })
     }
   },

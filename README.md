@@ -14,14 +14,14 @@ yarn
 * Em seguida, criaremos o banco:
 ```
 yarn sequelize db:create cinema-db
-
+```
 * Agora, executaremos as migrations:
 ```
 yarn sequelize db:migrate
-
+```
 * Por fim, executaremos a aplicação:
 ```
 yarn dev
-
+```
 Pronto! Aplicação deve estar rodando 100% agora.
 

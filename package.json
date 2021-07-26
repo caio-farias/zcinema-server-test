@@ -5,12 +5,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "nodejs src/server.js",
-    "create-tmp": "mkdir -p 'tmp/uploads/user_avatars' && mkdir -p 'tmp/uploads/movie_banners'"
+    "start": "node src/server.js",
+    "create-tmp": "mkdir -p 'tmp/uploads/'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",

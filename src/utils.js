@@ -1,10 +1,10 @@
 module.exports = {
   generateBaseURL (){
-    const isDev = process.env.NODE_ENV == 'development'
+    const isDev = IsDevEnviroment()
     return isDev ? `http://${process.env.HOST}:${process.env.PORT}`
       : `https://${process.env.HOST}`
   },
-  IsProd() {
-    return process.env.NODE_ENV == 'development'
+  IsDevEnviroment() {
+    return process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined
   }
 }

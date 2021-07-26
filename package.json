@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "start": "nodejs src/server.js",
+    "create-tmp": "mkdir -p 'tmp/uploads/user_avatars' && mkdir -p 'tmp/uploads/movie_banners'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

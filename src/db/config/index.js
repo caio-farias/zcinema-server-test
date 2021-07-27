@@ -1,5 +1,5 @@
-const { IsProd, IsDevEnviroment } = require('../../utils')
+const { isDevEnviroment } = require('../../utils')
 const devCofig = require('./dev')
 const prodCofig = require('./prod')
 
-module.exports = IsDevEnviroment()? devCofig: prodCofig;
+module.exports = isDevEnviroment()? devCofig: prodCofig;

@@ -3,7 +3,7 @@ const { generateBaseURL } = require("../utils")
 
 module.exports = {
   async createUser(req, res) {
-    const { first_name, last_name, password, email } = req.body
+    const { first_name, last_name, password, email, profile } = req.body
     const avatar = generateBaseURL() + '/uploads/' + req.file.filename
     try {
       const isSameUser = await User.findOne({ where: { email : email } })
@@ -14,7 +14,8 @@ module.exports = {
         first_name, 
         last_name, 
         password, 
-        email, 
+        email,
+        profile,
         avatar
       })
       delete user['dataValues'].password
@@ -46,7 +47,7 @@ module.exports = {
   },
   async updateUser(req, res){
     const { id } = req.params
-    const { first_name, last_name, email } = req.body
+    const { first_name, last_name, email, profile } = req.body
     console.log(req.body)
     try {
       const user = await User.findOne({ where: { id: id }})
@@ -57,6 +58,7 @@ module.exports = {
         first_name: first_name,
         last_name: last_name,
         email: email,
+        profile: profile,
       }, { where: { id: id } })
       return res.json(user)
     } catch (error) {

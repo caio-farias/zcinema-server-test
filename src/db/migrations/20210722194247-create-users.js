@@ -43,7 +43,7 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        avatar:{
+        profile:{
           type: Sequelize.STRING,
           allowNull: false,
         },

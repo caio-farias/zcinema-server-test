@@ -16,11 +16,11 @@ class User extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      avatar:{
+      profile:{
         type: DataTypes.STRING,
         allowNull: false,
       },
-      profile:{
+      avatar:{
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken')
-const { secret } = require('../auth-jwt.json')
+const api = require('../axios')
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization
-
+  const { id } = req.params
+  
   if(!authHeader)
     return res.status(401).send({ message: "Token não informado."})
   
@@ -16,12 +16,17 @@ module.exports = (req, res, next) => {
 
   if(!/^Bearer$/i.test(scheme))
     return res.status(401).send({ message: "Token mal formatado."})
-  
-  jwt.verify(token, secret, (err, decoded) => {
-    if(err)
-      return res.status(401).send({ message: "Token inválido"})
 
-    req.userId = decoded.id
+  try {
+    const result = await api.post('/permission', { id, token })
+    const { permission } = result.data
+
+    if(permission == 'DENIED'){
+      return res.status(401).json({ message: "Sem permissão para realizar esta requisição." })
+    }
     next()
-  })
+  } catch (error) {
+    const { message } = error.response.data
+    return res.status(400).json({ message })
+  }
 }

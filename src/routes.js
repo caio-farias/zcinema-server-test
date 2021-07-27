@@ -1,19 +1,20 @@
 const express = require('express')
 const UserController = require('./controllers/UserController')
-const AuthController = require('./controllers/AuthController')
 const routes = express.Router()
 const AuthMiddleware = require('./middlewares/Auth')
-const UserMiddleware = require('./middlewares/User')
+const MicroServiceAuthMiddleware = require('./middlewares/MicroserviceAuth')
 const multer = require('multer')
 const multerConfig = require('./config/multer')
+const MicroserviceUserController = require('./controllers/MicroserviceUserController')
 
 
 routes.post('/users', multer(multerConfig).single('file'), UserController.createUser)
-routes.get('/users', AuthMiddleware, UserController.getAllUsers)
-routes.get('/users/:id', [AuthMiddleware, UserMiddleware], UserController.getUser)
-routes.patch('/users/:id', [AuthMiddleware, UserMiddleware], UserController.updateUser)
-routes.delete('/users/:id', [AuthMiddleware, UserMiddleware], UserController.deleteUser)
+routes.get('/users', UserController.getAllUsers)
+routes.get('/users/:id', AuthMiddleware, UserController.getUser)
+routes.patch('/users/:id', AuthMiddleware, UserController.updateUser)
+routes.delete('/users/:id', AuthMiddleware, UserController.deleteUser)
 
-routes.post('/auth', AuthController.authenticate)
+routes.post('/microsservice-users/', MicroServiceAuthMiddleware, MicroserviceUserController.getUser)
+
 
 module.exports = routes

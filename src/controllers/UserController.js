@@ -1,5 +1,4 @@
 const User = require("../models/User")
-const { generateBaseURL } = require("../utils")
 
 module.exports = {
   async createUser(req, res) {

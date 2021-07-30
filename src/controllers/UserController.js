@@ -3,8 +3,8 @@ const { generateBaseURL } = require("../utils")
 
 module.exports = {
   async createUser(req, res) {
-    const { first_name, last_name, password, email, profile } = req.body
-    const avatar = generateBaseURL() + '/uploads/' + req.file.filename
+    const { first_name, last_name, password, email, profile, avatar } = req.body
+
     try {
       const isSameUser = await User.findOne({ where: { email : email } })
       if(isSameUser){

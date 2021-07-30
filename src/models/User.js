@@ -24,26 +24,6 @@ class User extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      profile:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      avatar:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      avatar:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      profile:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      avatar:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       email:      {
         type: DataTypes.STRING,
         allowNull: false,
